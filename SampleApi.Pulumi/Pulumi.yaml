@@ -1,0 +1,3 @@
+name: SampleApi.Pulumi
+runtime: dotnet
+description: A sample testing pulumi

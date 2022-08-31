@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<RootNamespace>SampleApi.WebApi</RootNamespace>
+    <Nullable>enable</Nullable>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <AWSProjectType>Lambda</AWSProjectType>
+    <!-- This property makes the build directory similar to a publish directory and helps the AWS .NET Lambda Mock Test Tool find project dependencies. -->
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <!-- Generate ready to run images during publishing to improve cold start time. -->
+    <PublishReadyToRun>true</PublishReadyToRun>
+	<IsPackable>True</IsPackable>
+	<LangVersion>latest</LangVersion>
+	<PublishRepositoryUrl>true</PublishRepositoryUrl>
+	<ProjectUrl>https://github.com/eVisionSoftware/axiom</ProjectUrl>
+	<BUILD_NUMBER Condition="'$(BUILD_NUMBER)' == ''">0</BUILD_NUMBER>
+	<NoWarn>CS1591</NoWarn>
+	<IsTestProject>false</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Amazon.Lambda.AspNetCoreServer" Version="7.2.0" />
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.3.69" />
+	<PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.7.2" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "X3XDz418eTPPsh7EIXgBPZsxFE1XzkJsJ+gSOxjsXos=",
+  "Source": "SampleOnBoarding.WebApi",
+  "BasePath": "_content/SampleOnBoarding.WebApi",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -1,0 +1,93 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\houssem.cherifi\\Source\\repos\\axiom\\lab\\onboarding-example\\src\\SampleOnBoarding.WebApi\\SampleOnBoarding.WebApi.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\houssem.cherifi\\Source\\repos\\axiom\\lab\\onboarding-example\\src\\SampleOnBoarding.WebApi\\SampleOnBoarding.WebApi.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\houssem.cherifi\\Source\\repos\\axiom\\lab\\onboarding-example\\src\\SampleOnBoarding.WebApi\\SampleOnBoarding.WebApi.csproj",
+        "projectName": "SampleOnBoarding.WebApi",
+        "projectPath": "C:\\Users\\houssem.cherifi\\Source\\repos\\axiom\\lab\\onboarding-example\\src\\SampleOnBoarding.WebApi\\SampleOnBoarding.WebApi.csproj",
+        "packagesPath": "C:\\Users\\houssem.cherifi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\houssem.cherifi\\Source\\repos\\axiom\\lab\\onboarding-example\\src\\SampleOnBoarding.WebApi\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\houssem.cherifi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://evisionsoftware.jfrog.io/evisionsoftware/api/nuget/v3/dev-nuget": {},
+          "https://evisionsoftware.jfrog.io/evisionsoftware/api/nuget/v3/dev-nuget-ci": {},
+          "https://evisionsoftware.jfrog.io/evisionsoftware/api/nuget/v3/dev-nuget-release": {},
+          "https://evisionsoftware.jfrog.io/evisionsoftware/api/nuget/v3/ps-nuget": {},
+          "https://evisionsoftware.jfrog.io/evisionsoftware/api/nuget/v3/ps-nuget-ci": {},
+          "https://evisionsoftware.jfrog.io/evisionsoftware/api/nuget/v3/ps-nuget-release": {},
+          "https://nuget.pkg.github.com/eVisionSoftware/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "AWSSDK.DynamoDBv2": {
+              "target": "Package",
+              "version": "[3.7.3.69, )"
+            },
+            "AWSSDK.Extensions.NETCore.Setup": {
+              "target": "Package",
+              "version": "[3.7.2, )"
+            },
+            "Amazon.Lambda.AspNetCoreServer": {
+              "target": "Package",
+              "version": "[7.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Crossgen2.win-x64",
+              "version": "[6.0.8, 6.0.8]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
