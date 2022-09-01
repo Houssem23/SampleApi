@@ -104,6 +104,7 @@ return await Deployment.RunAsync(() =>
                     Name = "ProductName",
                     Type = "S",
                 },
+                /*
                 new TableAttributeArgs
                 {
                     Name = "ProductDescription",
@@ -114,6 +115,7 @@ return await Deployment.RunAsync(() =>
                     Name = "Rank",
                     Type = "N",
                 },
+                */
             },
         
             GlobalSecondaryIndexes =
@@ -128,6 +130,11 @@ return await Deployment.RunAsync(() =>
             }
             });
    // Export the name of the resources
+   outputs.Add("sampleLambdaRole",sampleFunctionRole);
+   outputs.Add("sampleFunction",sampleFunction);
+   outputs.Add("sampleGateway",gateway);
+   outputs.Add("sampleTable",dynamoDbTable);
+   //TODO: add different other ressource
    return outputs;
 
 });
