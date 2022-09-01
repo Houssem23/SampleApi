@@ -26,7 +26,7 @@ return await Deployment.RunAsync(() =>
         Runtime = Runtime.Dotnet6,
         MemorySize = 1024,
         //TODO:change this to the right dir
-        Code = new FileArchive("./app.zip"),
+        Code = new FileArchive("/home/runner/work/SampleApi/SampleApi/app.zip"),
         Handler = "WebApi::SampleApi.WebApi.LambdaEntryPoint::FunctionHandlerAsync",
         Role = sampleFunctionRole.Arn,
     });
