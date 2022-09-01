@@ -40,7 +40,6 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-          role-to-assume: ${{ secrets.X_PRINCIPAL_ARN }}
       - uses: pulumi/actions@v3
         with:
           command: preview
