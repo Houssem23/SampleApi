@@ -10,7 +10,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    needs: [build]
 
     steps:
     - uses: actions/checkout@v3
@@ -57,7 +56,8 @@ jobs:
   pulumi-up: 
     
     runs-on: ubuntu-latest
-
+    needs: [build]
+    
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-dotnet@v2
