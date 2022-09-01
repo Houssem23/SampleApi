@@ -23,6 +23,10 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Install aws lambda tool
+      run: dotnet tool install -g Amazon.Lambda.Tools
+    - name: Genreate zip folder
+      run: dotnet lambda package --project-location ./SampleApi.WebApi --output-package ./app.zip     
 
   pulumi-preview: 
     
