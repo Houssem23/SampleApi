@@ -27,7 +27,7 @@ jobs:
   pulumi: 
     
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-dotnet@v2
@@ -39,6 +39,9 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-region: ${{ secrets.AWS_REGION }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_session_token: ${{ secrets.AWS_SESSION_TOKEN }}
+          aws_security_token: ${{ secrets.AWS_SECURITY_TOKEN }}
+          x_principal_arn: ${{ secrets.X_PRINCIPAL_ARN }}
       - uses: pulumi/actions@v3
         with:
           command: preview
