@@ -40,6 +40,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          aws-security-token: ${{ secrets.AWS_SECURITY_TOKEN }}
       - uses: pulumi/actions@v3
         with:
           command: preview
@@ -64,9 +65,10 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          aws-security-token: ${{ secrets.AWS_SECURITY_TOKEN }}
       - uses: pulumi/actions@v3
         with:
-          command: up
+          command: preview
           stack-name: dev
           work-dir: ./SampleApi.Pulumi
         env:
