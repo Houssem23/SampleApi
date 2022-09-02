@@ -27,7 +27,7 @@ return await Deployment.RunAsync(() =>
         MemorySize = 1024,
         //TODO:change this to the right dir
         Code = new FileArchive("/home/runner/work/SampleApi/SampleApi/app.zip"),
-        Handler = "WebApi::SampleApi.WebApi.LambdaEntryPoint::FunctionHandlerAsync",
+        Handler = "SampleApi.WebApi::SampleApi.WebApi.LambdaEntryPoint::FunctionHandlerAsync",
         Role = sampleFunctionRole.Arn,
     });
    //api gateway    
@@ -89,7 +89,6 @@ return await Deployment.RunAsync(() =>
             
             BillingMode = "PAY_PER_REQUEST",
             HashKey = "Id",
-            //RangeKey = "SK",
             StreamEnabled = true,
             StreamViewType = "NEW_IMAGE",
             Attributes =
@@ -140,14 +139,16 @@ return await Deployment.RunAsync(() =>
                     }}]
                 }}");
     AttachPoliciesToRole(sampleFunctionRole,("DynamoPolicy", dynamodbPolicy));
+    AttachPoliciesToRole(sampleFunctionRole, ("logPolicy", logPolicy));
 
     // Export the name of the resources
-   outputs.Add("sampleLambdaRole",sampleFunctionRole);
+    outputs.Add("sampleLambdaRole",sampleFunctionRole);
    outputs.Add("sampleFunction",sampleFunction);
    outputs.Add("sampleGateway",gateway);
    outputs.Add("sampleTable",dynamoDbTable);
-   //TODO: add different other ressource
-   return outputs;
+    outputs.Add("DynamoPolicy", dynamodbPolicy);
+    //TODO: add different other ressource
+    return outputs;
 
 });
 //Helper method
