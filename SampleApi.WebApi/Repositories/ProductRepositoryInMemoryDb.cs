@@ -23,7 +23,7 @@ namespace SampleApi.WebApi.Repositories
             List<Product> products = new List<Product>();
             try
             {
-                await Task.Delay(4000);
+                await Task.Delay(1000);
                 //Handle the task cancellation by throwing an exception
                 if (cancellationToken.IsCancellationRequested) { throw new TaskCanceledException(); }
                 products = _products.ToList();
