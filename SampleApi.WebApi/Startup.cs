@@ -28,7 +28,7 @@ public class Startup
                 Region = RegionEndpoint.GetBySystemName("eu-west-1")
             });
         services.AddScoped<IService<Product>, ProductService>();
-        services.AddSingleton<IProductRepository<Product>, ProductRepositoryDynamoDb>();
+        services.AddSingleton<IProductRepository<Product>, ProductRepositoryInMemoryDb>();
         services.AddControllers();
 
     }
