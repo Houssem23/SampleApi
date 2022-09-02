@@ -15,9 +15,9 @@ return await Deployment.RunAsync(() =>
 {
    // We need to resolve where the lambda packages are.
     var rootDirectory = new DirectoryInfo(Environment.CurrentDirectory).Parent!;
-   // Create an AWS resource (S3 Bucket)
+  
    var outputs = new Dictionary<string, object?>();
-   //var bucket = new Bucket("my-bucket");
+  
    //role for lambda function 
    var sampleFunctionRole = CreateLambdaRole("sampleLambdaRole");
    //lambda function 
@@ -83,9 +83,9 @@ return await Deployment.RunAsync(() =>
                 ""Resource"": ""arn:aws:logs:*:*:*""
             }]
         }");
-   //
-   //DynamoDbTable
-   var dynamoDbTable = new Table("sampleTable", new TableArgs  {
+    //
+    //DynamoDbTable
+    var dynamoDbTable = new Table("sampleTable", new TableArgs  {
             
             BillingMode = "PAY_PER_REQUEST",
             HashKey = "Id",
@@ -103,19 +103,7 @@ return await Deployment.RunAsync(() =>
                 {
                     Name = "ProductName",
                     Type = "S",
-                },
-                /*
-                new TableAttributeArgs
-                {
-                    Name = "ProductDescription",
-                    Type = "S",
-                },
-                new TableAttributeArgs
-                {
-                    Name = "Rank",
-                    Type = "N",
-                },
-                */
+                }
             },
         
             GlobalSecondaryIndexes =
@@ -124,12 +112,36 @@ return await Deployment.RunAsync(() =>
                 {
                     Name = "ProductName-index",
                     HashKey = "ProductName",
-                    //RangeKey = "GSI1SK",
                     ProjectionType = "ALL"
                 },
             }
             });
-   // Export the name of the resources
+    var dynamodbPolicy =
+                Output.Format($@"{{
+                    ""Version"": ""2012-10-17"",
+                    ""Statement"": [{{
+                        ""Effect"": ""Allow"",
+                        ""Action"": [
+                            ""dynamodb:DescribeTable"",
+                            ""dynamodb:PutItem"",
+                            ""dynamodb:UpdateItem"",
+                            ""dynamodb:DeleteItem"",
+                            ""dynamodb:BatchWriteItem"",
+                            ""dynamodb:GetItem"",
+                            ""dynamodb:BatchGetItem"",
+                            ""dynamodb:Scan"",
+                            ""dynamodb:Query"",
+                            ""dynamodb:ConditionCheckItem""
+                        ],
+                        ""Resource"": [
+                            ""{dynamoDbTable.Arn}"",
+                            ""{dynamoDbTable.Arn}/index/*""
+                        ]
+                    }}]
+                }}");
+    AttachPoliciesToRole(sampleFunctionRole,("DynamoPolicy", dynamodbPolicy));
+
+    // Export the name of the resources
    outputs.Add("sampleLambdaRole",sampleFunctionRole);
    outputs.Add("sampleFunction",sampleFunction);
    outputs.Add("sampleGateway",gateway);
@@ -172,101 +184,3 @@ static void AttachPoliciesToRole(Role roleToAttachPoliciesTo, params (string Pol
         });
     }
 }
-
-
-/*
-
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Pulumi;
-using Pulumi.Aws.ApiGatewayV2;
-using Pulumi.Aws.Iam;
-using Pulumi.Aws.Lambda;
-using Deployment = Pulumi.Deployment;
-
-var tags = new InputMap<string>
-{
-    {"managedBy", "Pulumi"},
-    {"evision:project_code", "P00472/backoffice"},
-    {"evision:purpose", "modernization lab"},
-    {"evision:repository", "https://github.com/eVisionSoftware/axiom"},
-};
-
-return await Deployment.RunAsync(() =>
-{
-    // There are two places where this is executed from
-    //      1. At development time from the csproj directory.
-    //      2. At deployment time from the infra directory in the deployment container.
-    // We need to resolve where the lambda packages are.
-    var rootDirectory = new DirectoryInfo(Environment.CurrentDirectory).Parent!;
-    var tempDir = rootDirectory.GetDirectories().SingleOrDefault(d => d.Name == "temp");
-    if (tempDir != null)
-    {
-        rootDirectory = tempDir.GetDirectories("app").Single();
-    }
-    Console.WriteLine($"Root dir: {rootDirectory.FullName}");
-
-    var outputs = new Dictionary<string, object?>();
-
-    var sampleFunctionRole = CreateLambdaRole("sampleFunctionRole");
-    var sampleFunction = new Function("sampleFunction", new FunctionArgs
-    {
-        Runtime = Runtime.DotnetCore3d1,
-        MemorySize = 1024,
-        Code = new FileArchive($"{rootDirectory.FullName}/lambda/sample-web.zip"),
-        Handler = "Sample.Web::Axiom.Sample.Web.LambdaEntryPoint::FunctionHandlerAsync",
-        Role = sampleFunctionRole.Arn,
-    });
-    
-    
-    var logPolicy =
-        Output.Create(@"{
-            ""Version"": ""2012-10-17"",
-            ""Statement"": [{
-                ""Effect"": ""Allow"",
-                ""Action"": [
-                    ""logs:CreateLogGroup"",
-                    ""logs:CreateLogStream"",
-                    ""logs:PutLogEvents""
-                ],
-                ""Resource"": ""arn:aws:logs:*:*:*""
-            }]
-        }");
-    
-    AttachPoliciesToRole(sampleFunctionRole,
-        ("sampleFunctionPolicy", logPolicy));
-    
-    outputs.Add("endpoint", stagingStage.InvokeUrl);
-    
-    return outputs;
-});
-
-
-  var tableAndIndexAccessPolicy =
-                Output.Format($@"{{
-                    ""Version"": ""2012-10-17"",
-                    ""Statement"": [{{
-                        ""Effect"": ""Allow"",
-                        ""Action"": [
-                            ""dynamodb:DescribeTable"",
-                            ""dynamodb:PutItem"",
-                            ""dynamodb:UpdateItem"",
-                            ""dynamodb:DeleteItem"",
-                            ""dynamodb:BatchWriteItem"",
-                            ""dynamodb:GetItem"",
-                            ""dynamodb:BatchGetItem"",
-                            ""dynamodb:Scan"",
-                            ""dynamodb:Query"",
-                            ""dynamodb:ConditionCheckItem""
-                        ],
-                        ""Resource"": [
-                            ""{organizationsTable.Arn}"",
-                            ""{organizationsTable.Arn}/index/*""
-                        ]
-                    }}]
-                }}");
-
-
-*/
