@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SampleApi.WebApi.Models
 {
-    [DynamoDBTable("ProductRank1")]
+    //[DynamoDBTable(ConfigurationSettingsConstants.CreatedRessourceTableName.)]
     public class Product
     {
         [Required]

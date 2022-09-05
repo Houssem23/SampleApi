@@ -9,7 +9,7 @@ using Pulumi.Aws.ApiGatewayV2;
 using Pulumi.Aws.DynamoDB.Inputs;
 using Pulumi.Aws.DynamoDB;
 using Deployment = Pulumi.Deployment;
-
+using SampleApi.WebApi;
 
 return await Deployment.RunAsync(() =>
 {
@@ -143,11 +143,14 @@ return await Deployment.RunAsync(() =>
 
     // Export the name of the resources
     outputs.Add("sampleLambdaRole",sampleFunctionRole);
-   outputs.Add("sampleFunction",sampleFunction);
-   outputs.Add("sampleGateway",gateway);
-   outputs.Add("sampleTable",dynamoDbTable);
+    outputs.Add("sampleFunction",sampleFunction);
+    outputs.Add("sampleGateway",gateway);
+    outputs.Add("sampleTable",dynamoDbTable);
     outputs.Add("DynamoPolicy", dynamodbPolicy);
     //TODO: add different other ressource
+  
+    
+    ConfigurationSettingsConstants.CreatedRessourceTableName = dynamoDbTable.GetResourceName();
     return outputs;
 
 });
