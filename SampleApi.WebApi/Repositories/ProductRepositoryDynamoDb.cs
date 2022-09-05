@@ -10,11 +10,11 @@ namespace SampleApi.WebApi.Repositories
         private readonly DynamoDBContext _context;
         public ProductRepositoryDynamoDb(IAmazonDynamoDB dynamoDbClient)
         {
-            var config = new DynamoDBContextConfig
+            /*var config = new DynamoDBContextConfig
             {
                 TableNamePrefix = ConfigurationSettingsConstants.CreatedRessourceTableName
-            };
-            _context = new DynamoDBContext(dynamoDbClient,config);
+            };*/
+            _context = new DynamoDBContext(dynamoDbClient);
            
         }
         public async Task<Product> Add(Product item)

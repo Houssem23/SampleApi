@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SampleApi.WebApi.Models
 {
-    //[DynamoDBTable]
+    [DynamoDBTable("SampleTable0001")]
     public class Product
     {
         [Required]

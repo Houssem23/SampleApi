@@ -113,7 +113,8 @@ return await Deployment.RunAsync(() =>
                     HashKey = "ProductName",
                     ProjectionType = "ALL"
                 },
-            }
+            },
+            Name = "SampleTable0001"
             });
     var dynamodbPolicy =
                 Output.Format($@"{{
