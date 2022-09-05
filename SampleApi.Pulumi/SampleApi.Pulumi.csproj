@@ -11,4 +11,8 @@
     <PackageReference Include="Pulumi.Aws" Version="5.*" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SampleApi.WebApi\SampleApi.WebApi.csproj" />
+  </ItemGroup>
+
 </Project>
