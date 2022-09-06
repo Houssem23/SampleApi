@@ -8,7 +8,7 @@ namespace SampleApi.WebApi.Tests.Setup
     public class TestContext : IAsyncLifetime
     {
         private readonly DockerClient _dockerClient;
-        private const string ContainerImageUri = "amazon/dynamodb-local:1.17.1";
+        private const string ContainerImageUri = "amazon/dynamodb-local:latest";
         private string? _containerId;
         public TestContext()
         {
