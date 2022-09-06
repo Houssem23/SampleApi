@@ -7,6 +7,7 @@ namespace SampleApi.WebApi.Tests.Setup
     {
         private static readonly IAmazonDynamoDB DynamoDBClient = new AmazonDynamoDBClient(new AmazonDynamoDBConfig
         {
+            RegionEndpoint = Amazon.RegionEndpoint.EUWest1,
             UseHttp = true,
             ServiceURL = "http://localhost:8000"
         });
@@ -21,13 +22,12 @@ namespace SampleApi.WebApi.Tests.Setup
                     {
                         AttributeName = "Id",
                         AttributeType = "N"
-                    }
-                    /*,
+                    },
                     new AttributeDefinition
                     {
                         AttributeName = "ProductName",
                         AttributeType = "S"
-                    }*/
+                    }
                 },
                 KeySchema = new List<KeySchemaElement>
                 {
