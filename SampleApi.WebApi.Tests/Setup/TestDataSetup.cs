@@ -69,7 +69,7 @@ namespace SampleApi.WebApi.Tests.Setup
                 }
             };
 
-            await DynamoDBClient.CreateTableAsync(request);
+            //await DynamoDBClient.CreateTableAsync(request);
             await WaitUntilTableActive(request.TableName);
         }
 
