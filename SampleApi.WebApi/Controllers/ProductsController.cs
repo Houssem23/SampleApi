@@ -60,6 +60,7 @@ namespace SampleApi.WebApi.Controllers
         {
             if (!ModelState.IsValid)
             {
+                Console.WriteLine(ModelState.Values);
                 return BadRequest(ModelState);
             }
             try
@@ -67,8 +68,9 @@ namespace SampleApi.WebApi.Controllers
                 var item = await _service.Add(product);
                 return Ok(item);
             }
-            catch (ArgumentException) 
+            catch (ArgumentException ex) 
             {
+                Console.WriteLine(ex.Message);
                 return BadRequest();
             }
         }
