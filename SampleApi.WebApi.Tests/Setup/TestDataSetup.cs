@@ -21,12 +21,13 @@ namespace SampleApi.WebApi.Tests.Setup
                     {
                         AttributeName = "Id",
                         AttributeType = "N"
-                    },
+                    }
+                    /*,
                     new AttributeDefinition
                     {
                         AttributeName = "ProductName",
                         AttributeType = "S"
-                    }
+                    }*/
                 },
                 KeySchema = new List<KeySchemaElement>
                 {
@@ -69,7 +70,7 @@ namespace SampleApi.WebApi.Tests.Setup
                 }
             };
 
-            //await DynamoDBClient.CreateTableAsync(request);
+            await DynamoDBClient.CreateTableAsync(request);
             await WaitUntilTableActive(request.TableName);
         }
 
