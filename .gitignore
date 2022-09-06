@@ -360,3 +360,5 @@ SampleApi.WebApi.Tests/obj/Debug/net6.0/project.razor.json
 SampleApi.WebApi.Tests/obj/Debug/net6.0/SampleApi.WebApi.Tests.AssemblyInfo.cs
 *.cache
 *.sentinel
+.vs/SampleApi/v17/.suo
+.vs/SampleApi/v17/TestStore/0/testlog.manifest
