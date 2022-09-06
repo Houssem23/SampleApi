@@ -5,7 +5,7 @@ namespace SampleApi.WebApi.Tests.Setup
 {
     public class TestDataSetup
     {
-        private static readonly IAmazonDynamoDB DynamoDBClient = new AmazonDynamoDBClient(new AmazonDynamoDBConfig
+        private static readonly IAmazonDynamoDB DynamoDBClient = new AmazonDynamoDBClient(new Amazon.Runtime.BasicAWSCredentials("myaccesskey", "mysecretkey"),new AmazonDynamoDBConfig
         {
             UseHttp = true,
             ServiceURL = "http://localhost:8000"
