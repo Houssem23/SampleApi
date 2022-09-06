@@ -1,4 +1,4 @@
-name: CI/CD sample API
+name: CI-CD sample API
 
 on:
   push:
