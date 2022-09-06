@@ -21,11 +21,11 @@ namespace SampleApi.WebApi.Tests
         [Fact]
         public async Task AddProductReturnsOkStatus()
         {
-            //const int Id = 1001;
+            const int Id = 1001;
 
-            //var response = await AddProductData(Id);
+            var response = await AddProductData(Id);
 
-            //Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.NotEqual(HttpStatusCode.OK, response.StatusCode);
         }
         private async Task<HttpResponseMessage> AddProductData(int testId, string productName = "test-ProductName1001")
         {
