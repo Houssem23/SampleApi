@@ -29,31 +29,31 @@ namespace SampleApi.WebApi.Repositories
             return new Product();
         }
 
-        public async Task<Product> Get(int id)
+        public async Task<Product?> Get(int id)
         {
 
             return await _context.LoadAsync<Product>(id);
         }
         //TODO: find a better way for this
-        public async Task<Product> GetByName(string itemName)
+        public async Task<Product?> GetByName(string itemName)
         {
             var config = new DynamoDBOperationConfig
             {
                 IndexName = "ProductName-index"
             };
-            var result = _context.QueryAsync<Product>(itemName, config).GetRemainingAsync().Result;
+            var result = await _context.QueryAsync<Product>(itemName, config).GetRemainingAsync();
             if (result.Any())
             {
                 return result.First();
             }
-            else 
+            else
             {
                 return null;
             }
-              
+
         }
 
-        public async Task<IEnumerable<Product>> List(CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<Product>?> List(CancellationToken cancellationToken = default)
         {
             return await _context.ScanAsync<Product>(new List<ScanCondition>()).GetRemainingAsync();
         }

@@ -6,6 +6,6 @@
         public const string DynamoDBTableName = "DynamoDBTableName";
         public const string DynamoDBTableRegion = "DynamoDBTableRegion";
 
-        public static String CreatedRessourceTableName ;
+        //public static String CreatedRessourceTableName ;
     }
 }

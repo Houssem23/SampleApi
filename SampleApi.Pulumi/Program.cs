@@ -151,7 +151,7 @@ return await Deployment.RunAsync(() =>
     //TODO: add different other ressource
   
     
-    ConfigurationSettingsConstants.CreatedRessourceTableName = dynamoDbTable.GetResourceName();
+    //ConfigurationSettingsConstants.CreatedRessourceTableName = dynamoDbTable.GetResourceName();
     return outputs;
 
 });

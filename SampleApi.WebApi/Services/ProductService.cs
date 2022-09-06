@@ -10,23 +10,24 @@ namespace SampleApi.WebApi.Services
         {
             _context = context;
         }
-        public async Task<bool> DoesItemExistAsync(string productName)
+        public async Task<bool> DoesItemExistAsync(Product item)
         {
-            var product = await _context.GetByName(productName);
-            return product != null;
+            var productByName = await _context.GetByName(item.ProductName!);
+            var productById = await _context.Get(item.Id);
+            return productByName != null || productById != null;
         }
 
         public async Task<Product> Add(Product item)
         {
-            if (!await DoesItemExistAsync(item.ProductName))
+            if (!await DoesItemExistAsync(item))
             {
                 return await _context.Add(item);
             }
             else
             {
-               
-               throw new ArgumentException();
-               
+
+                throw new ArgumentException();
+
             }
         }
 
@@ -35,12 +36,12 @@ namespace SampleApi.WebApi.Services
             return await _context.Delete(id);
         }
 
-        public async Task<Product> GetById(int id)
+        public async Task<Product?> GetById(int id)
         {
             return await _context.Get(id);
         }
 
-        public async Task<IEnumerable<Product>> List(CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<IEnumerable<Product>?> List(CancellationToken cancellationToken = default(CancellationToken))
         {
             return await _context.List(cancellationToken);
         }

@@ -14,37 +14,37 @@ namespace SampleApi.WebApi.Tests
         IService<Product> _service;
 
 
-        public ProductsControllerTest() 
+        public ProductsControllerTest()
         {
             _context = new ProductRepositoryInMemoryDb();
             _service = new ProductService(_context);
-            _controller = new ProductsController(_service); 
+            _controller = new ProductsController(_service);
         }
         [Fact]
-        public async Task ShouldReturn200Test() 
+        public async Task ShouldReturn200Test()
         {
             //arrange
 
             //act
             var result = await _controller.GetProducts();
-            var okResult = result.Result as ObjectResult;   
+            ObjectResult? okResult = result.Result as ObjectResult;
             //assert
             Assert.NotNull(result);
             Assert.NotNull(okResult);
-            Assert.Equal(okResult.StatusCode, StatusCodes.Status200OK);
+            Assert.Equal(okResult!.StatusCode, StatusCodes.Status200OK);
         }
         [Fact]
         public async Task ShouldContainNoProductTestAsync()
         {
             //arrange
-            
+
             //act
             var result = await _controller.GetProducts();
             //assert
             Assert.IsType<OkObjectResult>(result.Result);
 
-            var list = result.Result as OkObjectResult; 
-            Assert.IsType<List<Product>>(list.Value);
+            var list = result.Result as OkObjectResult;
+            Assert.IsType<List<Product>>(list!.Value);
 
             var listProducts = list.Value as List<Product>;
             Assert.Empty(listProducts);
@@ -61,7 +61,7 @@ namespace SampleApi.WebApi.Tests
             Assert.IsType<OkObjectResult>(result.Result);
 
             var list = result.Result as OkObjectResult; ;
-            Assert.IsType<List<Product>>(list.Value);
+            Assert.IsType<List<Product>>(list!.Value);
 
             var listProducts = list.Value as List<Product>;
             Assert.Single(listProducts);
@@ -70,7 +70,8 @@ namespace SampleApi.WebApi.Tests
         [Theory]
         [InlineData(101, typeof(NotFoundResult))]
         [InlineData(0, typeof(OkObjectResult))]
-        public async Task GetByIdTest(int id, Type expectedResultType) {
+        public async Task GetByIdTest(int id, Type expectedResultType)
+        {
             //arrange
             await _service.Add(new Product() { Id = 0, ProductName = "productname1", ProductDescription = "productdesc1", Rank = 7 });
 
@@ -80,11 +81,11 @@ namespace SampleApi.WebApi.Tests
             //assert
             Assert.NotNull(getProductResponse);
             Assert.NotNull(getProductResponse.Result);
-            Assert.Equal(getProductResponse.Result.ToString(), expectedResultType.ToString());
+            Assert.Equal(getProductResponse.Result!.ToString(), expectedResultType.ToString());
         }
         [Theory]
         [InlineData(101, typeof(NotFoundResult), 1)]
-        [InlineData(0, typeof(OkObjectResult), 0)]        
+        [InlineData(0, typeof(OkObjectResult), 0)]
         public async Task DeleteTest(int id, Type expectedTypeResult, int expectedCount)
         {
             //arrange
@@ -92,45 +93,45 @@ namespace SampleApi.WebApi.Tests
 
             //act
             var deleteProductResponse = await _controller.DeleteProduct(id);
-            
+
             //assert
             Assert.NotNull(deleteProductResponse);
             Assert.NotNull(deleteProductResponse.Result);
-            Assert.Equal(expectedTypeResult.ToString(), deleteProductResponse.Result.ToString());
-            Assert.Equal(expectedCount, _service.List().Result.Count());
+            Assert.Equal(expectedTypeResult.ToString(), deleteProductResponse.Result!.ToString());
+            Assert.Equal(expectedCount, _service.List().Result!.Count());
         }
         [Fact]
-        public async Task AddTest() 
+        public async Task AddTest()
         {
             //arrange
-            await _service.Add(new Product() { Id = 0, ProductName = "productname1",ProductDescription = "productdesc1", Rank = 7 });
+            await _service.Add(new Product() { Id = 0, ProductName = "productname1", ProductDescription = "productdesc1", Rank = 7 });
             //act
             var getAddedProductResponse = await _controller.GetProduct(0);
             var result = getAddedProductResponse.Result as OkObjectResult;
-            var product = result.Value as Product;
+            var product = result!.Value as Product;
             //assert
             Assert.NotNull(getAddedProductResponse);
             Assert.IsType<OkObjectResult>(getAddedProductResponse.Result);
             Assert.NotNull(result);
             Assert.NotNull(product);
-            Assert.Equal("productname1", product.ProductName);
+            Assert.Equal("productname1", product!.ProductName);
         }
         [Fact]
-        public async Task UpdateTest() 
+        public async Task UpdateTest()
         {
             //arrange
-            await _service.Add(new Product() { Id = 0, ProductName = "productname1", ProductDescription = "productdesc1",Rank = 7 });
+            await _service.Add(new Product() { Id = 0, ProductName = "productname1", ProductDescription = "productdesc1", Rank = 7 });
             await _service.Update(new Product() { Id = 0, ProductName = "productname1updated", ProductDescription = "productdesc1updated", Rank = 3 });
             //act
             var getUpdatedProductResponse = await _controller.GetProduct(0);
-            var result = getUpdatedProductResponse.Result as OkObjectResult;
-            var product = result.Value as Product;
+            OkObjectResult? result = getUpdatedProductResponse.Result as OkObjectResult;
+            Product? product = result!.Value as Product;
             //assert
             Assert.NotNull(getUpdatedProductResponse);
             Assert.IsType<OkObjectResult>(getUpdatedProductResponse.Result);
             Assert.NotNull(result);
             Assert.NotNull(product);
-            Assert.Equal("productname1updated", product.ProductName);
+            Assert.Equal("productname1updated", product!.ProductName);
             Assert.Equal(3, product.Rank);
         }
     }
