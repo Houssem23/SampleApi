@@ -25,7 +25,7 @@ namespace SampleApi.WebApi.Tests
 
             var response = await AddProductData(Id);
 
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
         }
         private async Task<HttpResponseMessage> AddProductData(int testId, string productName = "test-ProductName")
         {
