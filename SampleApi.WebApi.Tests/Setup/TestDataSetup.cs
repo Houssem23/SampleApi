@@ -67,7 +67,8 @@ namespace SampleApi.WebApi.Tests.Setup
                             ProjectionType = "ALL"
                         }
                     }
-                }
+                },
+                BillingMode = BillingMode.PAY_PER_REQUEST
             };
 
             await DynamoDBClient.CreateTableAsync(request);
