@@ -7,7 +7,7 @@ namespace SampleApi.WebApi.Tests.Setup
     {
         private static readonly IAmazonDynamoDB DynamoDBClient = new AmazonDynamoDBClient(new AmazonDynamoDBConfig
         {
-            ServiceURL = "http://localhost:8000"
+            ServiceURL = "http://localhost:5600"
         });
 
         public async Task CreateTable()
