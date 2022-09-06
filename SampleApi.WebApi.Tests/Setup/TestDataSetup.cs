@@ -9,7 +9,7 @@ namespace SampleApi.WebApi.Tests.Setup
         {
             RegionEndpoint = Amazon.RegionEndpoint.EUWest1,
             UseHttp = true,
-            ServiceURL = "http://localhost:8000"
+            ServiceURL = "http://localhost:8000/"
         });
 
         public async Task CreateTable()
