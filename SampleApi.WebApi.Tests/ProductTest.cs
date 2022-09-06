@@ -22,11 +22,9 @@ namespace SampleApi.WebApi.Tests
         public async Task AddProductReturnsOkStatus()
         {
             const int Id = 1;
-           var response =  await _client.GetAsync($"/api/products");
-           Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            //var response = await AddProductData(Id);
+            var response = await AddProductData(Id);
 
-            //Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
         private async Task<HttpResponseMessage> AddProductData(int testId, string productName = "test-ProductName")
         {
