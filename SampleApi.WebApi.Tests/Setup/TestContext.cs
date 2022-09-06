@@ -45,14 +45,14 @@ namespace SampleApi.WebApi.Tests.Setup
                 ExposedPorts = new Dictionary<string, EmptyStruct>
                 {
                     {
-                        "5600", default
+                        "8000", default
                     }
                 },
                 HostConfig = new HostConfig
                 {
                     PortBindings = new Dictionary<string, IList<PortBinding>>
                     {
-                        {"5600", new List<PortBinding> {new PortBinding {HostPort = "5600"}}}
+                        {"8000", new List<PortBinding> {new PortBinding {HostPort = "8000"}}}
                     },
                     PublishAllPorts = true
                 }
