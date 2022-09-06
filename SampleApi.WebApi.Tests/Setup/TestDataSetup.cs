@@ -77,7 +77,7 @@ namespace SampleApi.WebApi.Tests.Setup
             string? status = null;
             do
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(6000);
                 try
                 {
                     status = await GetTableStatus(tableName);

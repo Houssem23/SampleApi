@@ -351,3 +351,12 @@ MigrationBackup/
 *.cache
 SampleApi.WebApi.Tests/obj/Debug/net6.0/project.razor.json
 *.cache
+*.v2
+*.v2
+.vs/SampleApi/v17/.suo
+*.dll
+SampleApi.WebApi.Tests/obj/Debug/net6.0/project.razor.json
+*.pdb
+SampleApi.WebApi.Tests/obj/Debug/net6.0/SampleApi.WebApi.Tests.AssemblyInfo.cs
+*.cache
+*.sentinel
