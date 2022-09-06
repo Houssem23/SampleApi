@@ -11,7 +11,7 @@ namespace SampleApi.WebApi.Tests.Setup
         private string? _containerId;
         public TestContext()
         {
-            _dockerClient = new DockerClientConfiguration(new Uri("npipe://./pipe/docker_engine")).CreateClient();
+            _dockerClient = new DockerClientConfiguration(new Uri("docker run -it -v //./pipe/docker_engine://./pipe/docker_engine -u ContainerAdministrator – cmd")).CreateClient();
         }
         public async Task InitializeAsync()
         {
