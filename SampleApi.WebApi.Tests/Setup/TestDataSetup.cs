@@ -6,7 +6,7 @@ namespace SampleApi.WebApi.Tests.Setup
 {
     public class TestDataSetup
     {
-        private static readonly IAmazonDynamoDB DynamoDBClient = new AmazonDynamoDBClient(new BasicAWSCredentials("KEY", "SECRETKEY"),new AmazonDynamoDBConfig
+        private static readonly IAmazonDynamoDB DynamoDBClient = new AmazonDynamoDBClient(new AmazonDynamoDBConfig
         {
             RegionEndpoint = Amazon.RegionEndpoint.EUWest1,
             UseHttp = true,
@@ -60,8 +60,8 @@ namespace SampleApi.WebApi.Tests.Setup
                         },
                         ProvisionedThroughput = new ProvisionedThroughput
                         {
-                            ReadCapacityUnits = 1,
-                            WriteCapacityUnits = 1
+                            ReadCapacityUnits = 2,
+                            WriteCapacityUnits = 2
                         },
                         Projection = new Projection
                         {
