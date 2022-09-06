@@ -11,7 +11,6 @@ namespace SampleApi.WebApi.Tests
     [Collection("api")]
     public class ProductTest : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
-    /*
         readonly HttpClient _client;
 
         public ProductTest(CustomWebApplicationFactory<Startup> factory)
@@ -44,5 +43,4 @@ namespace SampleApi.WebApi.Tests
             return await _client.PostAsync($"/api/products", stringContent);
         }
     }
-    */
 }
