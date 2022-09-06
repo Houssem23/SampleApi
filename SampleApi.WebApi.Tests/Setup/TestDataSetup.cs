@@ -40,7 +40,7 @@ namespace SampleApi.WebApi.Tests.Setup
                     ReadCapacityUnits = 1,
                     WriteCapacityUnits = 1
                 },
-                TableName = "ProductRank",
+                TableName = "SampleTable0001",
 
                 GlobalSecondaryIndexes = new List<GlobalSecondaryIndex>
                 {
