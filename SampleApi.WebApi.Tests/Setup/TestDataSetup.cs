@@ -1,11 +1,12 @@
 ﻿using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.Model;
+using Amazon.Runtime;
 
 namespace SampleApi.WebApi.Tests.Setup
 {
     public class TestDataSetup
     {
-        private static readonly IAmazonDynamoDB DynamoDBClient = new AmazonDynamoDBClient(new AmazonDynamoDBConfig
+        private static readonly IAmazonDynamoDB DynamoDBClient = new AmazonDynamoDBClient(new BasicAWSCredentials("KEY", "SECRETKEY"),new AmazonDynamoDBConfig
         {
             RegionEndpoint = Amazon.RegionEndpoint.EUWest1,
             UseHttp = true,
