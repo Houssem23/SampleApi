@@ -1,5 +1,6 @@
 ﻿using Docker.DotNet;
 using Docker.DotNet.Models;
+using System.Runtime.InteropServices;
 using Xunit;
 
 namespace SampleApi.WebApi.Tests.Setup
@@ -11,7 +12,10 @@ namespace SampleApi.WebApi.Tests.Setup
         private string? _containerId;
         public TestContext()
         {
-            _dockerClient = new DockerClientConfiguration(new Uri("docker run -it -v //./pipe/docker_engine://./pipe/docker_engine -u ContainerAdministrator – cmd")).CreateClient();
+            var uri = new Uri("npipe://./pipe/docker_engine");
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                uri = new Uri("unix:///var/run/docker.sock");
+            _dockerClient = new DockerClientConfiguration(uri).CreateClient();
         }
         public async Task InitializeAsync()
         {
